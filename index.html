@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reward Hub - Free Game Credits & Mobile Recharge</title>
+    
+    <!-- Meta Description Added -->
+    <meta name="description" content="Welcome to Reward Hub, your top destination for free game credits and mobile recharge. Get free Free Fire Diamonds, PUBG UC, CoC Gems, and mobile top-ups easily.">
+    
+    <!-- Favicon Link Added -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --background-color: #f4f7f6;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --text-light: #666666;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Header and Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px var(--shadow-color);
+        }
+
+        .service-card img {
+            width: 80px; /* Logo size */
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* --- Animated 'Free' Text --- */
+        .animated-free {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.25rem;
+            
+            /* Gradient text effect */
+            background: linear-gradient(to right, #007bff, #ff4b4b, #28a745, #007bff);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* Animation */
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: -250% center;
+            }
+        }
+        
+        .service-card .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.6rem 1.5rem;
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        /* Section Styles */
+        .content-section {
+            padding: 3rem 0;
+            background: var(--card-background);
+            border-radius: 10px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* About Us Section */
+        #about p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+
+        /* Blog Section */
+        .blog-posts {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .blog-post-preview {
+            background: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: 300px;
+            text-align: left;
+        }
+
+        .blog-post-preview h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .blog-post-preview p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .blog-post-preview a {
+            font-weight: 600;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid #ddd;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <header class="container">
+        <a href="#" class="logo">Reward Hub</a>
+        <nav class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#blog">Blog</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Free Gaming Credits & Mobile Recharge</h1>
+            <p>Your ultimate destination for all in-game rewards and utilities.</p>
+        </section>
+
+        <section id="services">
+            <div class="services-grid">
+                
+                <!-- Service 1: Mobile Recharge -->
+                <a href="/mobile-recharge.html" class="service-card">
+                    <img src="freemobile.png" alt="Mobile Recharge">
+                    <h3><span class="animated-free">Free</span> Mobile Recharge</h3>
+                    <span class="btn">Get Now</span>
+                </a>
+
+                <!-- Service 2: Free Fire -->
+                <a href="/free-fire-diamonds.html" class="service-card">
+                    <img src="freefire.png" alt="Free Fire Diamonds">
+                    <h3><span class="animated-free">Free</span> Free Fire Diamond</h3>
+                    <span class="btn">Get Now</span>
+                </a>
+
+                <!-- Service 3: PUBG -->
+                <a href="/pubg-uc.html" class="service-card">
+                    <img src="pubg.png" alt="PUBG UC">
+                    <h3><span class="animated-free">Free</span> PUBG UC</h3>
+                    <span class="btn">Get Now</span>
+                </a>
+
+                <!-- Service 4: Clash of Clans -->
+                <a href="/coc-gems.html" class="service-card">
+                    <img src="coc.png" alt="Clash of Clans Gems">
+                    <h3><span class="animated-free">Free</span> CoC Gems</h3>
+                    <span class="btn">Get Now</span>
+                </a>
+
+            </div>
+        </section>
+        
+        <!-- About Us Section -->
+        <section id="about" class="content-section">
+            <h2 class="section-title">About Us</h2>
+            <p>
+                Welcome to Reward Hub! We are dedicated to helping gamers and mobile users by providing them with a simple and effective platform to earn free in-game credits and mobile recharges. Our mission is to make premium items accessible to everyone.
+            </p>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="content-section">
+            <h2 class="section-title">Our Blog</h2>
+            <div class="blog-posts">
+                <div class="blog-post-preview">
+                    <h4>Top 5 Gaming Strategies for Beginners</h4>
+                    <p>Learn the best strategies to improve your gameplay in popular mobile games like Free Fire and PUBG.</p>
+                    <a href="/blog/post1.html">Read More &rarr;</a>
+                </div>
+                <div class="blog-post-preview">
+                    <h4>How to Get Free Mobile Recharge Easily</h4>
+                    <p>Discover the secrets and tips to never pay for your mobile recharge again with our simple guide.</p>
+                    <a href="/blog/post2.html">Read More &rarr;</a>
+                </div>
+                <div class="blog-post-preview">
+                    <h4>Upcoming Features in Clash of Clans</h4>
+                    <p>Get a sneak peek into the new updates and features coming to your favorite village-building game.</p>
+                    <a href="/blog/post3.html">Read More &rarr;</a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Reward Hub. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

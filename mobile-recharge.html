@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <!-- Added Title and Meta Description -->
+    <title>Free Mobile Recharge – Easy Ways to Save Money</title>
+    <meta name="description" content="Discover how to get free mobile recharge easily. Learn about the best apps and websites to earn talktime and data packs without spending real money.">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    
+    <style>
+        :root {
+            --button-gradient: linear-gradient(45deg, #00BFFF, #1E90FF);
+            --card-bg-color: rgba(255, 255, 255, 0.1);
+            --text-color: #ffffff;
+            --text-light-color: #e0e0e0;
+            --border-color: rgba(255, 255, 255, 0.25);
+            --success-color: #28a745;
+            --pending-color: #ffc107;
+            --danger-color: #dc3545;
+            --verify-color: #ff9800;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); color: var(--text-color); padding: 1rem; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; overflow-x: hidden; }
+        .app-container { 
+            width: 100%; 
+            max-width: 400px;
+            position: relative;
+        }
+        .card { background: var(--card-bg-color); border: 1px solid var(--border-color); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-radius: 20px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); margin-bottom: 1.5rem; animation: slideInUp 0.6s ease-out; }
+        .card-header { padding: 1.25rem 1.5rem; font-size: 1.25rem; font-weight: 600; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; gap: 1rem; }
+        .card-body { padding: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-control, .form-select { width: 100%; padding: 0.9rem 1rem 0.9rem 3rem; border: 1px solid var(--border-color); border-radius: 12px; font-size: 1rem; font-family: 'Poppins', sans-serif; background-color: rgba(0,0,0,0.2); color: var(--text-color); transition: all 0.3s ease; }
+        .form-control::placeholder { color: rgba(255,255,255,0.4); }
+        .form-select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 16px 12px; }
+        .btn-recharge { width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: 700; color: white; background: var(--button-gradient); border: none; border-radius: 12px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 0.5rem; }
+        .btn-recharge:disabled { background: #555; cursor: not-allowed; }
+        .spinner-border { width: 1.2rem; height: 1.2rem; border: 0.2em solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spinner-border .75s linear infinite; }
+        .d-none { display: none !important; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); z-index: 1000; display: none; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
+        .modal-overlay.show { display: flex; opacity: 1; }
+        .modal-content { background: var(--card-bg-color); border: 1px solid var(--border-color); padding: 2rem; border-radius: 20px; width: 90%; max-width: 360px; text-align: center; transform: scale(0.9); transition: transform 0.3s ease; }
+        #adButtonsContainer, #modalActions { display: flex; flex-direction: column; gap: 1rem; }
+        .btn-ad, .btn-verify, .btn-cancel { padding: 0.8rem; width: 100%; border-radius: 10px; border: 1px solid; background-color: transparent; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: all 0.2s; }
+        .btn-ad, .btn-verify { border-color: #00BFFF; color: #00BFFF; }
+        .btn-ad:hover, .btn-verify:hover:not(:disabled) { background-color: rgba(0, 191, 255, 0.2); }
+        .btn-ad.watched { background-color: var(--success-color); border-color: var(--success-color); color: white; cursor: not-allowed; }
+        .btn-ad:disabled:not(.watched), .btn-verify:disabled { border-color: #555; color: #555; cursor: not-allowed; background: transparent; }
+        .btn-verify { border-color: var(--verify-color); color: var(--verify-color); }
+        .btn-cancel { border-color: var(--danger-color); color: var(--danger-color); margin-top: 1rem; }
+        .btn-cancel:hover { background-color: rgba(220, 53, 69, 0.2); }
+        #historyList, #liveRechargeList { list-style: none; padding: 0; }
+        #historyList .list-group-item { padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); margin-bottom: 0.75rem; border-radius: 12px; font-size: 0.9rem; }
+        .history-item-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+        .status-badge { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; color: #111; }
+        .status-badge.pending { background-color: var(--pending-color); }
+        .status-badge.success { background-color: var(--success-color); color: white; }
+        .timer-display { font-weight: 600; font-size: 0.95rem; color: var(--pending-color); }
+        .history-actions { margin-top: 0.75rem; }
+        .btn-speed-up { background: transparent; border: 1px solid var(--text-light-color); color: var(--text-light-color); padding: 0.4rem 0.8rem; border-radius: 8px; cursor: pointer; font-size: 0.75rem; }
+        .btn-speed-up:disabled { opacity: 0.5; cursor: not-allowed; }
+        #liveRechargeCard .card-body { padding: 1rem; }
+        #liveRechargeList { height: 150px; overflow: hidden; position: relative; }
+        .live-recharge-item { padding: 0.75rem 1rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .live-recharge-item strong { color: #00BFFF; }
+        #success-toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background-color: var(--success-color); color: white; padding: 1rem 1.5rem; border-radius: 12px; z-index: 1002; font-weight: 500; transition: bottom 0.5s ease-in-out; }
+        #success-toast.show { bottom: 20px; }
+        #disclaimer { font-size: 0.7rem; color: rgba(255,255,255,0.5); cursor: pointer; text-align: center; margin-bottom: 1rem; padding-bottom: 1rem; }
+        #menu-trigger { position: absolute; top: 0.5rem; right: 0rem; font-size: 1.5rem; color: var(--text-light-color); cursor: pointer; z-index: 10; padding: 0.5rem; transition: color 0.3s; }
+        #menu-trigger:hover { color: #00BFFF; }
+        #menu-modal { align-items: flex-start; justify-content: flex-end; }
+        .menu-content { background: var(--card-bg-color); border: 1px solid var(--border-color); backdrop-filter: blur(15px); border-radius: 16px; width: 220px; margin-top: 3.5rem; margin-right: 1rem; overflow: hidden; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); }
+        .menu-content a { display: block; padding: 1rem 1.25rem; color: var(--text-color); text-decoration: none; font-size: 1rem; font-weight: 500; border-bottom: 1px solid var(--border-color); transition: background-color 0.2s; cursor: pointer; }
+        .menu-content a:hover { background-color: rgba(255, 255, 255, 0.1); }
+        .menu-content a:last-child { border-bottom: none; }
+        
+        /* --- BLOG STYLES --- */
+        #blog-section { display: none; }
+        .blog-content { padding: 1.5rem; line-height: 1.8; }
+        .blog-content h2, .blog-content h3 { margin-top: 1.5rem; margin-bottom: 0.75rem; color: #00BFFF; }
+        .blog-content p { margin-bottom: 1rem; color: var(--text-light-color); }
+        .blog-content hr { border: 0; height: 1px; background-color: var(--border-color); margin: 2rem 0; }
+        .faq-item { margin-bottom: 1.5rem; }
+        .faq-item strong { display: block; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Menu Trigger -->
+        <div id="menu-trigger" title="Menu">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+
+        <div id="main-content">
+            <div class="card"><div class="card-header"><i class="fas fa-bolt"></i><span>Instant Recharge</span></div><div class="card-body"><form id="rechargeForm" onsubmit="return false;"><div class="form-group"><div class="input-icon-wrapper"><i class="fas fa-globe"></i><select class="form-select" id="countrySelect" required><option value="" selected disabled>Select Country</option><option value="Bangladesh">Bangladesh</option><option value="India">India</option><option value="Pakistan">Pakistan</option></select></div></div><div class="form-group"><div class="input-icon-wrapper"><i class="fas fa-sim-card"></i><select class="form-select" id="operatorSelect" required><option value="">Select Operator</option></select></div></div><div class="form-group"><div class="input-icon-wrapper"><i class="fas fa-mobile-alt"></i><input type="tel" class="form-control" id="mobileNumber" placeholder="Mobile Number" required></div><div id="numberError" style="color: #ff4d4d; font-size: 0.8rem; margin-top: 5px; padding-left: 5px;"></div></div><div class="form-group"><div class="input-icon-wrapper"><i class="fas fa-money-bill-wave"></i><select class="form-select" id="amountSelect" required><option value="">Select Amount</option></select></div></div><button type="button" class="btn-recharge" id="rechargeButton"><span id="btnText">Recharge Now</span><div class="spinner-border d-none" id="loadingSpinner"></div></button></form></div></div>
+            <div class="card" id="historyCard"><div class="card-header"><i class="fas fa-history"></i><span>Your History</span></div><div class="card-body"><ul id="historyList"></ul></div></div>
+            <div class="card" id="liveRechargeCard"><div class="card-header"><i class="fas fa-satellite-dish"></i><span>Recent Recharges</span></div><div class="card-body"><ul id="liveRechargeList"></ul></div></div>
+            <p id="disclaimer" title="Click to hide this message">Disclaimer: For entertainment purposes only.</p>
+        </div>
+
+        <!-- Blog Section (Initially Hidden) -->
+        <div id="blog-section" class="card">
+            <div class="card-header">
+                <i class="fas fa-newspaper"></i><span>Blog & FAQ</span>
+            </div>
+            <div class="blog-content">
+                <h2>Free Mobile Recharge – Easy Ways to Save Money</h2>
+                <p>In today’s digital world, everyone needs mobile balance. From making calls, browsing the internet, to chatting with friends on social apps — recharge is something we can’t live without. But what if I tell you that Free Mobile Recharge is actually possible? Yes! With the right apps and websites, you can recharge your mobile without spending your own money.</p>
+                <hr>
+                <h3>What is Free Mobile Recharge?</h3>
+                <p>Free mobile recharge means getting talktime or data pack without paying real cash. There are many platforms and tricks available today where users can earn rewards and convert them into mobile balance. These platforms are often supported by advertisers — so when you watch ads, complete surveys, or download apps, you earn coins or credits. Later, these can be used for recharge.</p>
+                <hr>
+                <h3>Best Free Mobile Recharge Sites</h3>
+                <p>There are several free mobile recharge site options available online. These sites usually provide small tasks like watching a video, answering questions, or playing a game. After completing them, you receive credits which you can use for mobile top-up. The process is safe as long as you use trusted and popular websites.</p>
+                <hr>
+                <h3>Free Mobile Recharge Apps</h3>
+                <p>If you are a smartphone user, you will find plenty of free mobile recharge app in the Play Store. These apps allow you to earn coins or points through simple actions. Once you collect enough points, you can easily convert them into recharge for any mobile operator. Before installing, always check user reviews to make sure the app is genuine and reliable.</p>
+                <hr>
+                <h3>BSNL Recharge Options</h3>
+                <p>For those who use BSNL as their mobile operator, there are also specific offers and tricks available. Many recharge apps support BSNL recharge, so you can get talktime or data for free. Some sites even provide exclusive offers for BSNL customers. Just link your BSNL number in the app, complete the given tasks, and enjoy free balance.</p>
+                <hr>
+                <h3>Final Words</h3>
+                <p>Free mobile recharge is not a dream anymore. With the right free mobile recharge site or free mobile recharge app, you can easily get balance in your mobile. Whether you are using BSNL or any other operator, these tricks can help you save money and stay connected without worry.</p>
+                <hr>
+                <h2>Frequently Asked Questions (FAQ)</h2>
+                <div class="faq-item">
+                    <strong>Q1: What is Free Mobile Recharge?</strong>
+                    <p>Answer: Free mobile recharge means getting talktime or data pack without paying money. You can earn it by using apps, websites, or offers that give rewards for completing small tasks.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q2: Which is the best free mobile recharge site?</strong>
+                    <p>Answer: There are many free mobile recharge site options available. The best sites are those that are trusted, easy to use, and actually give balance after completing tasks. Always check reviews before using any site.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q3: Can I get BSNL recharge for free?</strong>
+                    <p>Answer: Yes, many apps and sites support BSNL recharge. You just need to link your BSNL number, complete the tasks, and then you can recharge your BSNL SIM without paying money.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q4: Are free mobile recharge apps safe?</strong>
+                    <p>Answer: Most free mobile recharge app are safe if you download them from the Play Store and check their ratings. But avoid third-party apps from unknown sources as they may not be secure.</p>
+                </div>
+                <div class="faq-item">
+                    <strong>Q5: How can I earn free recharge every day?</strong>
+                    <p>Answer: You can earn daily free recharge by watching ads, completing surveys, inviting friends to apps, or playing games in reward apps. Regular activity increases your chances of daily rewards.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="adModal" class="modal-overlay"><div class="modal-content"><h3 id="adModalTitle"></h3><p id="adModalText"></p><div id="adButtonsContainer"></div><div id="modalActions"></div></div></div>
+    <div id="success-toast"></div>
+    
+    <!-- Menu Modal -->
+    <div id="menu-modal" class="modal-overlay">
+        <div class="menu-content">
+            <a id="home-link">Home</a>
+            <a id="blog-link">Blog</a>
+            <a class="coming-soon">About Us</a>
+            <a class="coming-soon">How to Use</a>
+        </div>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const DIRECT_LINK_URL = 'https://bracecherry.com/u6a337e7?key=3325650cf041e83fe4b4f2c8585e55e2';
+    const countrySelect = document.getElementById('countrySelect');
+    const operatorSelect = document.getElementById('operatorSelect');
+    const mobileNumberInput = document.getElementById('mobileNumber');
+    const amountSelect = document.getElementById('amountSelect');
+    const rechargeButton = document.getElementById('rechargeButton');
+    const historyCard = document.getElementById('historyCard');
+    const historyList = document.getElementById('historyList');
+    const adModal = document.getElementById('adModal');
+    const adModalTitle = document.getElementById('adModalTitle');
+    const adModalText = document.getElementById('adModalText');
+    const adButtonsContainer = document.getElementById('adButtonsContainer');
+    const modalActions = document.getElementById('modalActions');
+    const menuTrigger = document.getElementById('menu-trigger');
+    const menuModal = document.getElementById('menu-modal');
+    
+    // New page content elements
+    const mainContent = document.getElementById('main-content');
+    const blogSection = document.getElementById('blog-section');
+    const homeLink = document.getElementById('home-link');
+    const blogLink = document.getElementById('blog-link');
+    
+    const countryData = {
+        'Bangladesh': { emoji: '🇧🇩', code: '+880', examplePrefixes: ['17', '18', '19', '13', '16'], numberLength: 9, operators: ['Grameenphone', 'Robi', 'Airtel', 'Banglalink', 'Teletalk'], amounts: [ { text: '৳ 20', value: 20, ads: 2 }, { text: '৳ 50', value: 50, ads: 3 }, { text: '৳ 100 (Popular)', value: 100, ads: 4 }, { text: '৳ 200 (Best Offer) 🔥', value: 200, ads: 5 }, { text: '৳ 500 ⭐ (Premium)', value: 500, ads: 6 }, { text: '৳ 1000 💎 (VIP)', value: 1000, ads: 7 } ], validation: /^(1[3-9])\d{8}$/ },
+        'India': { emoji: '🇮🇳', code: '+91', examplePrefixes: ['98', '88', '77', '62'], numberLength: 10, operators: ['Jio', 'Airtel', 'Vodafone Idea (Vi)', 'BSNL'], amounts: [ { text: '₹ 49', value: 49, ads: 2 }, { text: '₹ 99', value: 99, ads: 3 }, { text: '₹ 199 (Popular) 🔥', value: 199, ads: 4 }, { text: '₹ 299 (Best Offer)', value: 299, ads: 5 }, { text: '₹ 479 ⭐ (Premium)', value: 479, ads: 6 }, { text: '₹ 719 💎 (VIP)', value: 719, ads: 7 } ], validation: /^[6-9]\d{9}$/ },
+        'Pakistan': { emoji: '🇵🇰', code: '+92', examplePrefixes: ['300', '333', '345', '321'], numberLength: 10, operators: ['Jazz', 'Telenor', 'Zong', 'Ufone'], amounts: [ { text: 'Rs 100 (Popular)', value: 100, ads: 2 }, { text: 'Rs 250 (Best Offer) 🔥', value: 250, ads: 3 }, { text: 'Rs 500 ⭐ (Premium)', value: 500, ads: 5 }, { text: 'Rs 750 ⭐ (Super Offer)', value: 750, ads: 6 }, { text: 'Rs 1000 💎 (VIP)', value: 1000, ads: 7 } ], validation: /^(3\d{9})$/ }
+    };
+    
+    function generateExampleNumber(data) {
+        if (!data || !data.examplePrefixes || !data.numberLength) { return 'Mobile Number'; }
+        const prefix = data.examplePrefixes[Math.floor(Math.random() * data.examplePrefixes.length)];
+        const remainingLength = data.numberLength - prefix.length;
+        let randomPart = '';
+        for (let i = 0; i < remainingLength; i++) { randomPart += Math.floor(Math.random() * 10); }
+        return `${data.code} ${prefix}${randomPart}`;
+    }
+
+    function getAppState() { return JSON.parse(localStorage.getItem('appState')) || {}; }
+    function saveAppState(newState) { localStorage.setItem('appState', JSON.stringify({ ...getAppState(), ...newState })); }
+    
+    function clearVerificationState() {
+        localStorage.removeItem('appState');
+        localStorage.removeItem('activeTimer');
+        if(activeTimerInterval) { clearInterval(activeTimerInterval); activeTimerInterval = null; }
+    }
+    
+    let activeTimerInterval = null;
+    function runTimerLoop(button, endTime, onComplete) {
+        if (activeTimerInterval) clearInterval(activeTimerInterval);
+        button.disabled = true;
+        activeTimerInterval = setInterval(() => {
+            const remainingTime = Math.max(0, endTime - Date.now());
+            const secondsLeft = Math.ceil(remainingTime / 1000);
+            if (remainingTime > 0) { button.innerHTML = `<i class="fas fa-hourglass-half"></i> Please Wait ${secondsLeft}s...`; } 
+            else { clearInterval(activeTimerInterval); activeTimerInterval = null; localStorage.removeItem('activeTimer'); onComplete(); }
+        }, 250);
+    }
+    function createVerificationAdFlow(button, timerId, onComplete) {
+        if (localStorage.getItem('activeTimer')) return;
+        window.open(DIRECT_LINK_URL, '_blank');
+        const endTime = Date.now() + 10000;
+        localStorage.setItem('activeTimer', JSON.stringify({ id: timerId, endTime: endTime }));
+        runTimerLoop(button, endTime, onComplete);
+    }
+    function restoreAppState() {
+        const state = getAppState();
+        if (!state.form || !state.form.country) return;
+        const data = countryData[state.form.country];
+        if (!data) return;
+        populateDropdown(operatorSelect, data.operators, 'Select Operator');
+        populateDropdown(amountSelect, data.amounts, 'Select Amount');
+        countrySelect.value = state.form.country;
+        operatorSelect.value = state.form.operator;
+        mobileNumberInput.value = state.form.number;
+        mobileNumberInput.placeholder = generateExampleNumber(data);
+        amountSelect.value = state.form.amount;
+        operatorSelect.disabled = false;
+        mobileNumberInput.disabled = false;
+        validateFormAndEnableAmount();
+        if (state.adFlow?.isModalOpen) { showInitialAdModal(state.adFlow); } 
+        else if (state.speedUpFlow?.isModalOpen) { handleSpeedUp(state.speedUpFlow.index, true); } 
+        else if (state.adFlow?.isComplete) { rechargeButton.disabled = false; }
+    }
+    function showInitialAdModal(restoredAdFlow = null) {
+        let adFlow = restoredAdFlow;
+        if (!adFlow) {
+            const selectedCountryData = countryData[countrySelect.value];
+            if (!selectedCountryData || amountSelect.value === "") return;
+            const selectedAmountData = selectedCountryData.amounts[amountSelect.value];
+            adFlow = { isModalOpen: true, adsWatched: 0, requiredAds: selectedAmountData.ads, isComplete: false };
+        }
+        saveAppState({ adFlow, form: { country: countrySelect.value, operator: operatorSelect.value, number: mobileNumberInput.value, amount: amountSelect.value } });
+        adModalTitle.textContent = "Verification Required";
+        adModalText.textContent = `To continue, please complete ${adFlow.requiredAds} steps sequentially.`;
+        adButtonsContainer.innerHTML = '';
+        modalActions.innerHTML = '';
+        for (let i = 0; i < adFlow.requiredAds; i++) {
+            const adButton = document.createElement('button');
+            const timerId = `ad-flow-${i}`;
+            adButton.className = 'btn-ad'; adButton.id = timerId;
+            adButton.innerHTML = `<i class="fas fa-play-circle"></i> Start Step (${i + 1}/${adFlow.requiredAds})`;
+            adButtonsContainer.appendChild(adButton);
+            if (i < adFlow.adsWatched) {
+                adButton.innerHTML = `<i class="fas fa-check-circle"></i> Step Complete!`;
+                adButton.classList.add('watched'); adButton.disabled = true;
+            } else { adButton.disabled = (i !== adFlow.adsWatched); }
+            const onComplete = () => {
+                adButton.innerHTML = `<i class="fas fa-check-circle"></i> Step Complete!`;
+                adButton.classList.add('watched'); adButton.disabled = true;
+                const currentState = getAppState(); const currentAdFlow = currentState.adFlow;
+                currentAdFlow.adsWatched++; 
+                if (currentAdFlow.adsWatched >= currentAdFlow.requiredAds) {
+                    currentAdFlow.isComplete = true; currentAdFlow.isModalOpen = false;
+                    saveAppState({ adFlow: currentAdFlow }); adModal.classList.remove('show');
+                    rechargeButton.disabled = false; 
+                    showToast('Verification Complete! You can now recharge.');
+                } else {
+                    saveAppState({ adFlow: currentAdFlow });
+                    const nextButton = document.getElementById(`ad-flow-${currentAdFlow.adsWatched}`);
+                    if (nextButton) { nextButton.disabled = false; }
+                }
+            };
+            adButton.addEventListener('click', () => createVerificationAdFlow(adButton, timerId, onComplete));
+        }
+        const activeTimer = JSON.parse(localStorage.getItem('activeTimer'));
+        if (activeTimer && activeTimer.id.startsWith('ad-flow-')) {
+             const buttonToResume = document.getElementById(activeTimer.id);
+             if (buttonToResume && !buttonToResume.classList.contains('watched')) {
+                 const index = parseInt(activeTimer.id.split('-')[2]);
+                 const onResumeComplete = () => {
+                    buttonToResume.innerHTML = `<i class="fas fa-check-circle"></i> Step Complete!`;
+                    buttonToResume.classList.add('watched'); buttonToResume.disabled = true;
+                    const currentState = getAppState(); const currentAdFlow = currentState.adFlow;
+                    currentAdFlow.adsWatched = index + 1; 
+                    if (currentAdFlow.adsWatched >= currentAdFlow.requiredAds) {
+                        currentAdFlow.isComplete = true; currentAdFlow.isModalOpen = false;
+                        saveAppState({ adFlow: currentAdFlow }); adModal.classList.remove('show');
+                        rechargeButton.disabled = false;
+                        showToast('Verification Complete! You can now recharge.');
+                    } else {
+                         saveAppState({ adFlow: currentAdFlow });
+                         const nextButton = document.getElementById(`ad-flow-${currentAdFlow.adsWatched}`);
+                         if (nextButton) { nextButton.disabled = false; }
+                    }
+                 };
+                 runTimerLoop(buttonToResume, activeTimer.endTime, onResumeComplete);
+             }
+        }
+        const cancelButton = document.createElement('button');
+        cancelButton.className = 'btn-cancel';
+        cancelButton.innerHTML = `<i class="fas fa-times-circle"></i> Cancel Process`;
+        cancelButton.addEventListener('click', () => { adModal.classList.remove('show'); clearVerificationState(); amountSelect.value = ""; rechargeButton.disabled = false; });
+        modalActions.appendChild(cancelButton); adModal.classList.add('show');
+    }
+    function handleSpeedUp(index, isRestoring = false) {
+        const history = JSON.parse(localStorage.getItem('rechargeHistory')) || [];
+        const entry = history[index];
+        if (!entry || entry.adsWatched >= 3) return;
+        if (!isRestoring) { saveAppState({ speedUpFlow: { isModalOpen: true, index: index } }); }
+        adModalTitle.textContent = "Speed Up Recharge";
+        adModalText.textContent = "Complete a quick step to cut the remaining waiting time in half.";
+        adButtonsContainer.innerHTML = ''; modalActions.innerHTML = '';
+        const speedUpButton = document.createElement('button');
+        const timerId = `speed-up-${index}`;
+        speedUpButton.className = 'btn-ad'; speedUpButton.id = timerId;
+        speedUpButton.innerHTML = `<i class="fas fa-forward"></i> Start Step to Halve Time`;
+        const onComplete = () => {
+            const currentHistory = JSON.parse(localStorage.getItem('rechargeHistory')) || [];
+            const currentEntry = currentHistory[index];
+            if(currentEntry && currentEntry.status === 'pending') {
+                currentEntry.endTime -= (currentEntry.endTime - Date.now()) / 2;
+                currentEntry.adsWatched += 1;
+                localStorage.setItem('rechargeHistory', JSON.stringify(currentHistory));
+                showToast('Remaining time has been halved!');
+                saveAppState({ speedUpFlow: null }); adModal.classList.remove('show'); renderHistory();
+            }
+        };
+        speedUpButton.addEventListener('click', () => createVerificationAdFlow(speedUpButton, timerId, onComplete));
+        const activeTimer = JSON.parse(localStorage.getItem('activeTimer'));
+        if(activeTimer && activeTimer.id === timerId) { runTimerLoop(speedUpButton, activeTimer.endTime, onComplete); }
+        const cancelButton = document.createElement('button');
+        cancelButton.className = 'btn-cancel';
+        cancelButton.innerHTML = `<i class="fas fa-times-circle"></i> Cancel`;
+        cancelButton.addEventListener('click', () => { adModal.classList.remove('show'); localStorage.removeItem('activeTimer'); if(activeTimerInterval) clearInterval(activeTimerInterval); saveAppState({ speedUpFlow: null }); });
+        modalActions.appendChild(cancelButton); adModal.classList.add('show');
+    }
+    function renderHistory() {
+        const history = JSON.parse(localStorage.getItem('rechargeHistory')) || [];
+        historyCard.style.display = history.length > 0 ? 'block' : 'none';
+        historyList.innerHTML = '';
+        history.forEach((entry, index) => {
+            const listItem = document.createElement('li'); listItem.className = 'list-group-item';
+            let statusSection = '', actionSection = '';
+            if (entry.status === 'success') { statusSection = `<span class="status-badge success">Success</span>`; } 
+            else {
+                const remainingTime = entry.endTime - Date.now();
+                const flagEmoji = countryData[entry.country]?.emoji || '';
+                statusSection = `<div style="text-align: right;"><span class="status-badge pending">Pending</span><div style="display: flex; align-items: center; gap: 5px; justify-content: flex-end; margin-top: 4px;"><span style="font-size: 0.75rem; color: var(--text-light-color);">Paid After</span><span class="timer-display" data-index="${index}">${formatTime(remainingTime)}</span></div><div style="font-size: 2rem; margin-top: 0.5rem; line-height: 1;">${flagEmoji}</div></div>`;
+                actionSection = `<div class="history-actions"><button class="btn-speed-up" data-index="${index}" ${entry.adsWatched >= 3 ? 'disabled' : ''}><i class="fas fa-forward"></i> Speed Up (${entry.adsWatched}/3)</button></div>`;
+            }
+            const displayDate = new Date(entry.date).toLocaleString('en-US', { hour12: true });
+            listItem.innerHTML = `<div class="history-item-top"><div><strong>${entry.number}</strong> (${entry.operator})<br><strong style="color:#00BFFF;">${entry.amount}</strong> - <span style="font-size:0.8rem; color: var(--text-light-color);">${displayDate}</span></div>${statusSection}</div>${actionSection}`;
+            historyList.appendChild(listItem);
+        });
+        document.querySelectorAll('.btn-speed-up').forEach(button => { button.addEventListener('click', (e) => handleSpeedUp(parseInt(e.currentTarget.getAttribute('data-index')))); });
+    }
+    function updateAllTimers() {
+        let needsFullRender = false;
+        document.querySelectorAll('.timer-display').forEach(timerEl => {
+            const index = parseInt(timerEl.dataset.index);
+            const history = JSON.parse(localStorage.getItem('rechargeHistory')) || [];
+            const entry = history[index];
+            if(entry && entry.status === 'pending') {
+                const remainingTime = entry.endTime - Date.now();
+                if (remainingTime < 0) { entry.status = 'success'; needsFullRender = true; localStorage.setItem('rechargeHistory', JSON.stringify(history)); } 
+                else { timerEl.textContent = formatTime(remainingTime); }
+            }
+        });
+        if (needsFullRender) renderHistory();
+    }
+    function startPrank() {
+        if (rechargeButton.disabled) return; 
+        const btnText = document.getElementById('btnText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        rechargeButton.disabled = true; btnText.textContent = 'Recharging...';
+        loadingSpinner.classList.remove('d-none');
+        setTimeout(() => {
+            btnText.textContent = 'Recharge Now';
+            loadingSpinner.classList.add('d-none');
+            const amountData = countryData[countrySelect.value]?.amounts[amountSelect.value];
+            showToast(`Recharge for ${amountData ? amountData.text : ''} is being processed.`);
+            saveHistory();
+            clearVerificationState();
+            document.getElementById('rechargeForm').reset();
+            operatorSelect.innerHTML = '<option value="">Select Operator</option>';
+            operatorSelect.disabled = false; mobileNumberInput.disabled = false;
+            amountSelect.disabled = false; rechargeButton.disabled = false;
+            mobileNumberInput.placeholder = 'Mobile Number';
+        }, 3000);
+    }
+    function saveHistory() {
+        const selectedCountryValue = countrySelect.value;
+        if (!selectedCountryValue) { showToast("Please select a country first."); return; }
+        const amountData = countryData[selectedCountryValue]?.amounts[amountSelect.value];
+        if (!amountData) return;
+        const newEntry = {
+            country: selectedCountryValue, operator: operatorSelect.value, number: countryData[selectedCountryValue].code + getCleanedNumber(mobileNumberInput.value),
+            amount: amountData.text, date: new Date().toISOString(), status: 'pending', endTime: Date.now() + 2 * 60 * 60 * 1000, adsWatched: 0
+        };
+        let history = JSON.parse(localStorage.getItem('rechargeHistory')) || [];
+        history.unshift(newEntry);
+        localStorage.setItem('rechargeHistory', JSON.stringify(history.slice(0, 5)));
+        renderHistory();
+    }
+    function validateFormAndEnableAmount() { amountSelect.disabled = false; rechargeButton.disabled = false; }
+    function getCleanedNumber(rawNumber) { return rawNumber.trim().startsWith('0') && countrySelect.value === 'Bangladesh' ? rawNumber.trim().substring(1) : rawNumber.trim(); }
+    function populateDropdown(select, options, placeholder) {
+        select.innerHTML = `<option value="" selected disabled>${placeholder}</option>`;
+        if (options) {
+            options.forEach((opt, index) => {
+                const optionEl = document.createElement('option');
+                if (select.id === 'amountSelect') { optionEl.value = index; optionEl.textContent = `${opt.text}`; } 
+                else { optionEl.value = opt; optionEl.textContent = opt; }
+                select.appendChild(optionEl);
+            });
+        }
+    }
+    function showToast(message) {
+        const successToast = document.getElementById('success-toast');
+        successToast.textContent = message;
+        successToast.classList.add('show');
+        setTimeout(() => successToast.classList.remove('show'), 4000);
+    }
+    function formatTime(ms) {
+        if (ms < 0) ms = 0;
+        const totalSeconds = Math.floor(ms / 1000);
+        return `${String(Math.floor(totalSeconds / 3600)).padStart(2, '0')}:${String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0')}:${String(totalSeconds % 60).padStart(2, '0')}`;
+    }
+    const liveDataTemplates = [ { code: '+880', prefix: '17', len: 8, amount: '৳100' }, { code: '+880', prefix: '18', len: 8, amount: '৳50' }, { code: '+880', prefix: '19', len: 8, amount: '৳200' }, { code: '+91', prefix: '98', len: 8, amount: '₹99' }, { code: '+91', prefix: '78', len: 8, amount: '₹149' }, { code: '+91', 'prefix': '88', len: 8, amount: '₹299' }, { code: '+92', prefix: '30', len: 8, amount: 'Rs 250' }];
+    
+    function generateLiveRecharge() { 
+        const liveRechargeList = document.getElementById('liveRechargeList'); 
+        const maxItems = 4; 
+        const template = liveDataTemplates[Math.floor(Math.random() * liveDataTemplates.length)]; 
+        const randomPart = Math.floor(Math.random() * Math.pow(10, template.len)).toString().padStart(template.len, '0'); 
+        const fullNumber = template.code + template.prefix + randomPart; 
+        const maskedNumber = `${fullNumber.slice(0, 7)}*****${fullNumber.slice(-3)}`; 
+        const listItem = document.createElement('li'); 
+        listItem.className = 'live-recharge-item'; 
+        listItem.innerHTML = `<span>${maskedNumber}</span><div style="display: flex; align-items: center; gap: 0.6rem;"><span class="status-badge success" style="font-size: 0.7rem; padding: 0.1rem 0.5rem;">Success</span><strong>${template.amount}</strong></div>`;
+        liveRechargeList.prepend(listItem); 
+        if (liveRechargeList.children.length > maxItems) { liveRechargeList.lastChild.remove(); } 
+    }
+
+    countrySelect.addEventListener('change', () => {
+        clearVerificationState();
+        const selectedCountry = countrySelect.value;
+        if (selectedCountry && countryData[selectedCountry]) {
+            const data = countryData[selectedCountry];
+            populateDropdown(operatorSelect, data.operators, 'Select Operator');
+            populateDropdown(amountSelect, data.amounts, 'Select Amount');
+            operatorSelect.disabled = false; mobileNumberInput.disabled = false;
+            mobileNumberInput.value = ''; mobileNumberInput.placeholder = generateExampleNumber(data);
+        } else {
+             operatorSelect.disabled = false; mobileNumberInput.disabled = false;
+             mobileNumberInput.placeholder = 'Mobile Number';
+        }
+        amountSelect.disabled = false; rechargeButton.disabled = false;
+    });
+
+    [operatorSelect, mobileNumberInput].forEach(el => { el.addEventListener('change', validateFormAndEnableAmount); el.addEventListener('keyup', validateFormAndEnableAmount); });
+    
+    amountSelect.addEventListener('change', () => { if(amountSelect.value !== "") { rechargeButton.disabled = false; showInitialAdModal(); } });
+
+    rechargeButton.addEventListener('click', startPrank);
+    document.getElementById('disclaimer').addEventListener('click', (e) => { e.currentTarget.style.opacity = '0'; setTimeout(() => e.target.style.display = 'none', 500); });
+    
+    menuTrigger.addEventListener('click', () => { menuModal.classList.add('show'); });
+    menuModal.addEventListener('click', (event) => { if (event.target === menuModal) { menuModal.classList.remove('show'); } });
+    
+    homeLink.addEventListener('click', () => {
+        blogSection.style.display = 'none';
+        mainContent.style.display = 'block';
+        menuModal.classList.remove('show');
+    });
+
+    blogLink.addEventListener('click', () => {
+        mainContent.style.display = 'none';
+        blogSection.style.display = 'block';
+        menuModal.classList.remove('show');
+    });
+
+    document.querySelectorAll('.coming-soon').forEach(link => {
+        link.addEventListener('click', (e) => { e.preventDefault(); menuModal.classList.remove('show'); showToast('This page is coming soon!'); });
+    });
+    
+    operatorSelect.disabled = false; mobileNumberInput.disabled = false; amountSelect.disabled = false; rechargeButton.disabled = false;
+    
+    restoreAppState();
+    renderHistory();
+    setInterval(generateLiveRecharge, 3500);
+    setInterval(updateAllTimers, 1000);
+});
+</script>
+</body>
+</html>
