@@ -209,6 +209,20 @@
 </head>
 <body>
     <div class="app-container">
+        <!-- Banner 320x50 Ad Placement -->
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e3e8c243b5741cf0268f38cd219d4ab9',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/e3e8c243b5741cf0268f38cd219d4ab9/invoke.js"></script>
+        </div>
+
         <div id="menu-trigger" title="Menu">
             <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
@@ -261,6 +275,12 @@
                     <span id="btnText">Top-up Now</span>
                 </button>
             </form>
+            
+            <!-- Native Banner Ad Placement -->
+            <div style="margin-top: 1.5rem; margin-bottom: 0rem;">
+                <script async="async" data-cfasync="false" src="//pl27680057.revenuecpmgate.com/ba8084bb5644d8T2d51ae8d33bf1bd8b/invoke.js"></script>
+                <div id="container-ba8084bb5644d872d51ae8d33bf1bd8b"></div>
+            </div>
 
             <div class="card" id="historyCard" style="display: none; margin-top: 2rem;">
                 <div class="card-header"><div class="icon">H</div><span>Your History</span></div>
@@ -384,19 +404,26 @@
     </div>
     <div id="success-toast"></div>
     
+    <!-- MENU MODAL - UPDATED -->
     <div id="menu-modal" class="modal-overlay">
         <div class="menu-content">
-            <a href="#" class="menu-link" data-target="topup-section">Home</a>
+            <a href="index.html">Home</a>
+            <a href="index.html">More Rewards</a>
             <a href="#" class="menu-link" data-target="how-to-use-section">How to Use</a>
-            <a href="#" class="menu-link" data-target="blog-section">Blog</a>
+            <a href="index.html">Blog</a>
             <a href="#" class="menu-link" data-target="faq-section">FAQ</a>
             <a href="#" class="menu-link" data-target="about-us-section">About Us</a>
         </div>
     </div>
 
+<!-- Social Bar Ad Script -->
+<script async type='text/javascript' src='//pl27680051.revenuecpmgate.com/c8/73/a6/c873a6475228e4f8f343ea6cfb0c110a.js'></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const DIRECT_LINK_URL = 'https://bracecherry.com/u6a337e7?key=3325650cf041e83fe4b4f2c8585e55e2'; 
+    // UPDATED SMART LINK
+    const DIRECT_LINK_URL = 'https://www.revenuecpmgate.com/pf9fd579d?key=fe1f25d969509c7826e1ad5dbc97b8c4';
+    
     const countrySelect = document.getElementById('countrySelect');
     const playerUidInput = document.getElementById('playerUid');
     const diamondGrid = document.getElementById('diamondOptionsGrid');
@@ -761,6 +788,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    // UPDATED SCRIPT FOR MENU LINKS
     document.querySelectorAll('.menu-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault(); 
