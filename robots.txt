@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://freecr.vercel.app/sitemap.xml
