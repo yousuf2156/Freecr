@@ -15,8 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reward Hub - Free Game Credits & Mobile Recharge</title>
     
-    <!-- Meta Description Added -->
-    <meta name="description" content="Welcome to Reward Hub, your top destination for free game credits and mobile recharge. Get free Free Fire Diamonds, PUBG UC, CoC Gems, and mobile top-ups easily.">
+    <!-- Meta Description Fixed: Made more concise -->
+    <meta name="description" content="Reward Hub offers free game credits like Free Fire Diamonds, PUBG UC, and CoC Gems, plus mobile recharge. Your ultimate destination for in-game rewards.">
     
     <!-- Favicon Link Added -->
     <link rel="icon" type="image/png" href="favicon.png">
@@ -185,8 +185,13 @@
         /* About Us Section */
         #about p {
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 auto 1.5rem auto; /* Added margin-bottom for spacing between paragraphs */
             color: var(--text-light);
+            text-align: justify; /* Justify text for better readability */
+        }
+        
+        #about p:last-child {
+            margin-bottom: 0;
         }
 
         /* Blog Section */
@@ -253,28 +258,32 @@
                 
                 <!-- Service 1: Mobile Recharge -->
                 <a href="/mobile-recharge.html" class="service-card">
-                    <img src="freemobile.png" alt="Mobile Recharge">
+                    <!-- Improvement: Lazy loading for images -->
+                    <img src="freemobile.png" alt="Mobile Recharge" loading="lazy">
                     <h3><span class="animated-free">Free</span> Mobile Recharge</h3>
                     <span class="btn">Get Now</span>
                 </a>
 
                 <!-- Service 2: Free Fire -->
                 <a href="/free-fire-diamonds.html" class="service-card">
-                    <img src="freefire.png" alt="Free Fire Diamonds">
+                    <!-- Improvement: Lazy loading for images -->
+                    <img src="freefire.png" alt="Free Fire Diamonds" loading="lazy">
                     <h3><span class="animated-free">Free</span> Free Fire Diamond</h3>
                     <span class="btn">Get Now</span>
                 </a>
 
                 <!-- Service 3: PUBG -->
                 <a href="/pubg-uc.html" class="service-card">
-                    <img src="pubg.png" alt="PUBG UC">
+                    <!-- Improvement: Lazy loading for images -->
+                    <img src="pubg.png" alt="PUBG UC" loading="lazy">
                     <h3><span class="animated-free">Free</span> PUBG UC</h3>
                     <span class="btn">Get Now</span>
                 </a>
 
                 <!-- Service 4: Clash of Clans -->
                 <a href="/coc-gems.html" class="service-card">
-                    <img src="coc.png" alt="Clash of Clans Gems">
+                    <!-- Improvement: Lazy loading for images -->
+                    <img src="coc.png" alt="Clash of Clans Gems" loading="lazy">
                     <h3><span class="animated-free">Free</span> CoC Gems</h3>
                     <span class="btn">Get Now</span>
                 </a>
@@ -282,11 +291,17 @@
             </div>
         </section>
         
-        <!-- About Us Section -->
+        <!-- About Us Section Fixed: Expanded content and split into multiple paragraphs -->
         <section id="about" class="content-section">
             <h2 class="section-title">About Us</h2>
             <p>
-                Welcome to Reward Hub! We are dedicated to helping gamers and mobile users by providing them with a simple and effective platform to earn free in-game credits and mobile recharges. Our mission is to make premium items accessible to everyone.
+                Welcome to Reward Hub! We are dedicated to empowering gamers and mobile users through a simple and effective platform for earning free in-game credits and mobile recharges. Our core mission is to make premium digital items and mobile services accessible to everyone, without the financial burden. We believe that every player deserves to enjoy the full experience of their favorite games without limitations.
+            </p>
+            <p>
+                Our platform is designed with you in mind. We understand the thrill of unlocking new levels, characters, and items in your favorite games like Free Fire, PUBG, and Clash of Clans. That's why we've created a straightforward and user-friendly process for you to earn valuable rewards such as Diamonds, UC, and Gems. It's not just about gaming; we also provide a reliable way to get free mobile recharges, keeping you connected with your loved ones effortlessly.
+            </p>
+            <p>
+                At Reward Hub, we believe in building a fair and engaging community. We are constantly updating our offers and adding new rewards to cater to a wide range of interests and popular games. Our commitment is to provide a secure and trustworthy service where you can earn rewards with confidence. Join our growing community today and start taking advantage of the best free rewards platform on the web. Your next in-game upgrade or mobile top-up is just a few clicks away!
             </p>
         </section>
 
