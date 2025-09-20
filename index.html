@@ -31,9 +31,12 @@
     <!-- Favicon Link Added -->
     <link rel="icon" type="image/png" href="favicon.png">
     
+    <!-- SPEED BOOST: Added preload for Google Fonts CSS to load it faster -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"></noscript>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -203,6 +206,16 @@
         #about p:last-child {
             margin-bottom: 0;
         }
+        
+        /* Added for external link styling */
+        .external-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .external-link:hover {
+            text-decoration: underline;
+        }
 
         /* Blog Section */
         .blog-posts {
@@ -268,7 +281,6 @@
                 
                 <!-- Service 1: Mobile Recharge -->
                 <a href="/mobile-recharge.html" class="service-card">
-                    <!-- Improvement: Lazy loading for images -->
                     <img src="freemobile.png" alt="Mobile Recharge" loading="lazy">
                     <h3><span class="animated-free">Free</span> Mobile Recharge</h3>
                     <span class="btn">Get Now</span>
@@ -276,7 +288,6 @@
 
                 <!-- Service 2: Free Fire -->
                 <a href="/free-fire-diamonds.html" class="service-card">
-                    <!-- Improvement: Lazy loading for images -->
                     <img src="freefire.png" alt="Free Fire Diamonds" loading="lazy">
                     <h3><span class="animated-free">Free</span> Free Fire Diamond</h3>
                     <span class="btn">Get Now</span>
@@ -284,7 +295,6 @@
 
                 <!-- Service 3: PUBG -->
                 <a href="/pubg-uc.html" class="service-card">
-                    <!-- Improvement: Lazy loading for images -->
                     <img src="pubg.png" alt="PUBG UC" loading="lazy">
                     <h3><span class="animated-free">Free</span> PUBG UC</h3>
                     <span class="btn">Get Now</span>
@@ -292,7 +302,6 @@
 
                 <!-- Service 4: Clash of Clans -->
                 <a href="/coc-gems.html" class="service-card">
-                    <!-- Improvement: Lazy loading for images -->
                     <img src="coc.png" alt="Clash of Clans Gems" loading="lazy">
                     <h3><span class="animated-free">Free</span> CoC Gems</h3>
                     <span class="btn">Get Now</span>
@@ -308,7 +317,7 @@
                 Welcome to Reward Hub! We are dedicated to empowering gamers and mobile users through a simple and effective platform for earning free in-game credits and mobile recharges. Our core mission is to make premium digital items and mobile services accessible to everyone, without the financial burden. We believe that every player deserves to enjoy the full experience of their favorite games without limitations.
             </p>
             <p>
-                Our platform is designed with you in mind. We understand the thrill of unlocking new levels, characters, and items in your favorite games like Free Fire, PUBG, and Clash of Clans. That's why we've created a straightforward and user-friendly process for you to earn valuable rewards such as Diamonds, UC, and Gems. It's not just about gaming; we also provide a reliable way to get free mobile recharges, keeping you connected with your loved ones effortlessly.
+                Our platform is designed with you in mind. We understand the thrill of unlocking new levels and items in games like <a href="https://ff.garena.com/" target="_blank" rel="noopener noreferrer" class="external-link">Free Fire</a>, <a href="https://www.pubgmobile.com/" target="_blank" rel="noopener noreferrer" class="external-link">PUBG</a>, and <a href="https://clashofclans.com/" target="_blank" rel="noopener noreferrer" class="external-link">Clash of Clans</a>. That's why we've created a straightforward and user-friendly process for you to earn valuable rewards such as Diamonds, UC, and Gems. It's not just about gaming; we also provide a reliable way to get free mobile recharges, keeping you connected with your loved ones effortlessly.
             </p>
             <p>
                 At Reward Hub, we believe in building a fair and engaging community. We are constantly updating our offers and adding new rewards to cater to a wide range of interests and popular games. Our commitment is to provide a secure and trustworthy service where you can earn rewards with confidence. Join our growing community today and start taking advantage of the best free rewards platform on the web. Your next in-game upgrade or mobile top-up is just a few clicks away!
@@ -322,17 +331,17 @@
                 <div class="blog-post-preview">
                     <h4>Top 5 Gaming Strategies for Beginners</h4>
                     <p>Learn the best strategies to improve your gameplay in popular mobile games like Free Fire and PUBG.</p>
-                    <a href="/blog/post1.html">Read More &rarr;</a>
+                    <a href="blog.html">Read More &rarr;</a>
                 </div>
                 <div class="blog-post-preview">
                     <h4>How to Get Free Mobile Recharge Easily</h4>
                     <p>Discover the secrets and tips to never pay for your mobile recharge again with our simple guide.</p>
-                    <a href="/blog/post2.html">Read More &rarr;</a>
+                    <a href="blog2.html">Read More &rarr;</a>
                 </div>
                 <div class="blog-post-preview">
-                    <h4>Upcoming Features in Clash of Clans</h4>
-                    <p>Get a sneak peek into the new updates and features coming to your favorite village-building game.</p>
-                    <a href="/blog/post3.html">Read More &rarr;</a>
+                    <h4>Guide to Using a Free Fire Diamond Generator</h4>
+                    <p>Explore safe and effective methods for using a generator to get free diamonds in Free Fire.</p>
+                    <a href="blog3.html">Read More &rarr;</a>
                 </div>
             </div>
         </section>
@@ -343,4 +352,4 @@
         <p>&copy; 2025 Reward Hub. All Rights Reserved.</p>
     </footer>
 </body>
-    </html>
+</html>
