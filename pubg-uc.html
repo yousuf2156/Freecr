@@ -55,7 +55,7 @@
         .form-control, .form-select { width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; font-size: 1.2rem; font-family: 'Teko', sans-serif; background-color: var(--input-dark); color: var(--text-color); transition: border-color 0.3s; }
         .form-control:focus, .form-select:focus { border-color: var(--primary-color); outline: none; }
         .form-select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23f0f0f0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 16px 12px; }
-        .btn-topup { width: 100%; padding: 0.9rem; font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; color: var(--background-dark); background: var(--primary-color); border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s; text-transform: uppercase; }
+        .btn-topup { width: 100%; padding: 0.9rem; font-size: 1.5rem; font-weight: 700; letter-spacing: 1px; color: var(--background-dark); background: var(--primary-color); border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s; text-transform: uppercase; display: flex; justify-content: center; align-items: center; gap: 0.75rem; }
         .btn-topup:disabled { background: #555; color: #888; cursor: not-allowed; }
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .uc-option { background-color: var(--input-dark); border: 1px solid var(--border-color); padding: 0.9rem 0.5rem; border-radius: 8px; cursor: pointer; text-align: center; font-weight: 500; font-size: 1.1rem; color: #ccc; transition: all 0.2s; }
@@ -104,6 +104,21 @@
 </head>
 <body>
     <div class="app-container">
+        
+        <!-- Banner 320x50 Ad Placement - ADDED -->
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e3e8c243b5741cf0268f38cd219d4ab9',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/e3e8c243b5741cf0268f38cd219d4ab9/invoke.js"></script>
+        </div>
+
         <!-- Menu Trigger -->
         <div id="menu-trigger" title="Menu">
             <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -143,8 +158,17 @@
                     <select class="form-select" id="countrySelect" required><option value="" selected disabled>Select Country</option></select>
                 </div>
 
-                <button type="button" class="btn-topup" id="topupButton" disabled><span id="btnText">Top-up Now</span></button>
+                <button type="button" class="btn-topup" id="topupButton" disabled>
+                    <span id="btnText">Top-up Now</span>
+                    <div class="spinner-border d-none" id="loadingSpinner"></div>
+                </button>
             </form>
+            
+            <!-- Native Banner Ad Placement - ADDED -->
+            <div style="margin-top: 1.5rem; margin-bottom: 0rem;">
+                <script async="async" data-cfasync="false" src="//pl27680057.revenuecpmgate.com/ba8084bb5644d872d51ae8d33bf1bd8b/invoke.js"></script>
+                <div id="container-ba8084bb5644d872d51ae8d33bf1bd8b"></div>
+            </div>
 
             <div class="card" id="historyCard" style="display: none; margin-top: 2rem;">
                 <div class="card-header"><div class="icon"><i class="fa-solid fa-history"></i></div><span>Your History</span></div>
@@ -392,12 +416,29 @@ document.addEventListener('DOMContentLoaded', () => {
         adModal.classList.add('show');
     }
 
+    // MODIFIED loading function
     function startTopupProcess() {
-        showToast(`Top-up is pending. Please check history.`);
-        saveHistory();
-        document.getElementById('topupForm').reset();
-        populateUcPackages(gameData[countrySelect.value]?.ucPackages);
+        const btnText = document.getElementById('btnText');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+
         topupButton.disabled = true;
+        btnText.textContent = 'Processing...';
+        loadingSpinner.classList.remove('d-none');
+
+        setTimeout(() => {
+            btnText.textContent = 'Top-up Now';
+            loadingSpinner.classList.add('d-none');
+
+            showToast(`Top-up is pending. Please check history.`);
+            saveHistory();
+
+            document.getElementById('topupForm').reset();
+            countrySelect.value = '';
+            populateUcPackages(null);
+            clearVerificationState();
+            validateForm();
+
+        }, 3000); // 3-second fake loading time
     }
     
     function saveHistory() {
@@ -523,5 +564,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateAllTimers, 1000);
 });
 </script>
+
+<!-- Social Bar Ad Script - ADDED -->
+<script async type='text/javascript' src='//pl27680051.revenuecpmgate.com/c8/73/a6/c873a6475228e4f8f343ea6cfb0c110a.js'></script>
+
 </body>
 </html>
