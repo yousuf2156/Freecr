@@ -94,6 +94,21 @@
 </head>
 <body>
     <div class="app-container">
+
+        <!-- Banner 320x50 Ad Placement - ADDED -->
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e3e8c243b5741cf0268f38cd219d4ab9',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/e3e8c243b5741cf0268f38cd219d4ab9/invoke.js"></script>
+        </div>
+
         <!-- Menu Trigger -->
         <div id="menu-trigger" title="Menu">
             <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -101,6 +116,13 @@
 
         <div id="main-content">
             <div class="card"><div class="card-header"><i class="fas fa-bolt"></i><span>Instant Recharge</span></div><div class="card-body"><form id="rechargeForm" onsubmit="return false;"><div class="form-group"><div class="input-icon-wrapper"><i class="fas fa-globe"></i><select class="form-select" id="countrySelect" required><option value="" selected disabled>Select Country</option><option value="Bangladesh">Bangladesh</option><option value="India">India</option><option value="Pakistan">Pakistan</option></select></div></div><div class="form-group"><div class="input-icon-wrapper"><i class="fas fa-sim-card"></i><select class="form-select" id="operatorSelect" required><option value="">Select Operator</option></select></div></div><div class="form-group"><div class="input-icon-wrapper"><i class="fas fa-mobile-alt"></i><input type="tel" class="form-control" id="mobileNumber" placeholder="Mobile Number" required></div><div id="numberError" style="color: #ff4d4d; font-size: 0.8rem; margin-top: 5px; padding-left: 5px;"></div></div><div class="form-group"><div class="input-icon-wrapper"><i class="fas fa-money-bill-wave"></i><select class="form-select" id="amountSelect" required><option value="">Select Amount</option></select></div></div><button type="button" class="btn-recharge" id="rechargeButton"><span id="btnText">Recharge Now</span><div class="spinner-border d-none" id="loadingSpinner"></div></button></form></div></div>
+            
+            <!-- Native Banner Ad Placement - ADDED -->
+            <div style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                <script async="async" data-cfasync="false" src="//pl27680057.revenuecpmgate.com/ba8084bb5644d872d51ae8d33bf1bd8b/invoke.js"></script>
+                <div id="container-ba8084bb5644d872d51ae8d33bf1bd8b"></div>
+            </div>
+
             <div class="card" id="historyCard"><div class="card-header"><i class="fas fa-history"></i><span>Your History</span></div><div class="card-body"><ul id="historyList"></ul></div></div>
             <div class="card" id="liveRechargeCard"><div class="card-header"><i class="fas fa-satellite-dish"></i><span>Recent Recharges</span></div><div class="card-body"><ul id="liveRechargeList"></ul></div></div>
             <p id="disclaimer" title="Click to hide this message">Disclaimer: For entertainment purposes only.</p>
@@ -514,5 +536,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateAllTimers, 1000);
 });
 </script>
+
+<!-- Social Bar Ad Script - ADDED -->
+<script async type='text/javascript' src='//pl27680051.revenuecpmgate.com/c8/73/a6/c873a6475228e4f8f343ea6cfb0c110a.js'></script>
+
 </body>
 </html>
