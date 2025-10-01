@@ -259,6 +259,21 @@
 </head>
 <body>
     <div class="app-container">
+
+        <!-- Banner 320x50 Ad Placement -->
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'e3e8c243b5741cf0268f38cd219d4ab9',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/e3e8c243b5741cf0268f38cd219d4ab9/invoke.js"></script>
+        </div>
+
         <h2 class="main-title">Clash of Clans Gem Top-up</h2>
         <p class="sub-title">Your Ultimate Gem Resource</p>
         
@@ -279,7 +294,7 @@
                     </div>
                     <div class="card-body">
                         <label for="playerTag" class="form-label">Player Tag</label>
-                        <input type="text" class="form-control" id="playerTag" placeholder="e.g., #2YC2909V" required>
+                        <input type="text" class="form-control" id="playerTag" placeholder="Enter your tag (min 4 characters)" required>
                     </div>
                 </div>
                 <div class="card">
@@ -295,6 +310,13 @@
                     <span id="btnText">Top-up Now</span>
                 </button>
             </form>
+
+            <!-- Native Banner Ad Placement -->
+            <div style="margin-top: 1.5rem; margin-bottom: 0rem;">
+                <script async="async" data-cfasync="false" src="//pl27680057.revenuecpmgate.com/ba8084bb5644d872d51ae8d33bf1bd8b/invoke.js"></script>
+                <div id="container-ba8084bb5644d872d51ae8d33bf1bd8b"></div>
+            </div>
+
             <div class="card" id="historyCard" style="display: none; margin-top: 2rem;">
                 <div class="card-header">
                     <div class="icon"><i class="fa-solid fa-scroll"></i></div>
@@ -459,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- End of Firebase Dynamic Content Logic ---
 
 
-    // --- Start of Original Top-up Logic (Unchanged) ---
+    // --- Start of Top-up Logic (Validation Rule Changed) ---
     const DIRECT_LINK_URL = 'https://bracecherry.com/u6a337e7?key=3325650cf041e83fe4b4f2c8585e55e2'; 
     const playerTagInput = document.getElementById('playerTag');
     const gemGrid = document.getElementById('gemOptionsGrid');
@@ -481,8 +503,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { text: '6500 Gems', value: 6500, ads: 2 }, 
             { text: '14000 Gems', value: 14000, ads: 2 },
             { text: 'Gold Pass', value: 'Gold Pass', ads: 1 }
-        ], 
-        validation: /^#[0289PYLQGRJCUV]{8,10}$/i
+        ]
+        // The specific validation regex has been removed to implement the new logic.
     };
     
     function populateGemPackages(packages) {
@@ -684,14 +706,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (liveTopupList.children.length > 3) liveTopupList.lastChild.remove(); 
     }
     
+    // --- MODIFIED VALIDATION FUNCTION ---
     function validateForm() {
         const tag = playerTagInput.value;
-        topupButton.disabled = !(gameData.validation.test(tag) && selectedGemIndex !== null);
+        // The button is enabled if the tag length is greater than 3 AND a gem package is selected.
+        topupButton.disabled = !(tag.length > 3 && selectedGemIndex !== null);
     }
     
-    playerTagInput.addEventListener('input', validateForm);
-    topupButton.addEventListener('click', showVerificationModal);
-
     function showToast(message, type = 'normal') {
         const toast = document.getElementById('success-toast');
         toast.textContent = message;
@@ -735,9 +756,12 @@ document.addEventListener('DOMContentLoaded', () => {
         activeTimerInterval = null;
     }
 
-    // Navigation Logic
+    // --- EVENT LISTENERS ---
     const navLinks = document.querySelectorAll('.nav-link');
     const contentSections = document.querySelectorAll('.content-section');
+
+    playerTagInput.addEventListener('input', validateForm);
+    topupButton.addEventListener('click', showVerificationModal);
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -755,13 +779,18 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.add('active');
         });
     });
-
+    
+    // --- INITIALIZATION ---
     populateGemPackages(gameData.gemPackages);
     renderHistory();
     setInterval(generateLiveTopup, 4500);
     setInterval(updateAllTimers, 1000);
-    // --- End of Original Top-up Logic ---
+
 });
 </script>
+
+<!-- Social Bar Ad Script -->
+<script async type='text/javascript' src='//pl27680051.revenuecpmgate.com/c8/73/a6/c873a6475228e4f8f343ea6cfb0c110a.js'></script>
+
 </body>
 </html>
